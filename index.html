@@ -1,186 +1,198 @@
 <!doctype html>
 <!-- Engine: PASSED | All Signatures: YES | Anti-Patterns: 0 -->
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gibran Alcocer — Idea XIX · MMXXVI</title>
-<meta name="description" content="Gibran Alcocer. Pianist, composer, producer. Born Mérida, Yucatán. Las Ideas, en orden numerológico. Idea 19, Mayo MMXXVI.">
+<title>Gibran Alcocer — Pianist · Composer · Mérida</title>
+<meta name="description" content="Gibran Alcocer. Pianist, composer, producer. Mérida, Yucatán. The Idea series. Idea 19, May 2026.">
+<meta property="og:title" content="Gibran Alcocer">
+<meta property="og:description" content="Pianist · Composer · Mérida. The Idea series.">
+<meta property="og:image" content="media/gibran-poster.jpg">
+<meta name="theme-color" content="#0A0908">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<link rel="preload" as="image" href="media/gibran-poster.jpg">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ─────────  THE STRING (la cuerda) — wave-equation simulated SVG line  ───────── -->
-<svg class="cuerda" id="cuerda" aria-hidden="true" preserveAspectRatio="none">
-  <path id="cuerdaPath" d="" />
-</svg>
+<!-- ─────────────────────  HERO · CINEMA  ───────────────────── -->
+<section class="cinema" id="cinema">
 
-<!-- ─────────  CURSOR HAMMER (martillo)  ───────── -->
-<div class="martillo" id="martillo" aria-hidden="true"></div>
+  <div class="cinema__frame">
+    <video class="cinema__video" id="film"
+           playsinline autoplay muted loop preload="auto"
+           poster="media/gibran-poster.jpg">
+      <source id="filmSrc" src="media/gibran.mp4" type="video/mp4">
+    </video>
+    <div class="cinema__veil" aria-hidden="true"></div>
+  </div>
 
-<!-- ─────────  SURTITLE (single bottom-center metadata line)  ───────── -->
-<div class="surtitle" id="surtitle" aria-live="polite">
-  <span class="surtitle__inner">Yucatán <em>·</em> MMXXVI <em>·</em> in C minor</span>
-</div>
+  <!-- film credits — minimal, in the four edges of the frame -->
+  <div class="credits">
+    <div class="credits__tl">
+      <span class="lab">A film at the piano</span>
+    </div>
 
-<!-- ─────────  TINY MARK (top-left, no four-corner frame)  ───────── -->
-<div class="mark" aria-hidden="true">
-  <span class="mark__name"><em>G</em>·<em>A</em></span>
-</div>
+    <div class="credits__tr">
+      <button class="sound" id="sound" type="button" aria-pressed="false">
+        <span class="sound__lab">Sound</span>
+        <span class="sound__dot" aria-hidden="true"></span>
+      </button>
+    </div>
 
-<!-- ─────────  SCENES  ───────── -->
-<main id="page">
+    <div class="credits__bl">
+      <span class="lab"><span class="bullet">●</span>&nbsp;&nbsp;Now playing — <em>Idea 19</em>, the latest released</span>
+    </div>
 
-  <!-- I. IDEA XIX -->
-  <section class="scene scene--i" id="scene-1" data-surtitle="Yucatán · MMXXVI · in C minor · 4&#8242;08&#8243;">
-    <div class="scene__num"><em>I.</em></div>
+    <div class="credits__br">
+      <span class="time" id="time">00:00 / 00:13</span>
+    </div>
 
-    <div class="masthead">
-      <div class="masthead__rubric">A released, the nineteenth</div>
-      <h1 class="masthead__title">
-        <span class="t1"><em>Idea</em></span>
-        <span class="t2">XIX<span class="dot">.</span></span>
-      </h1>
-      <p class="masthead__caption">
-        Performed, written and produced by <em>Gibran Alcocer</em>.<br>
-        Released the fourth of May, MMXXVI.
-      </p>
-      <a class="escucha" href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
-        <span class="escucha__word">escucha<span class="dot">.</span></span>
-        <span class="escucha__rule"></span>
+    <h1 class="cinema__name" aria-label="Gibran Alcocer">
+      <span class="cinema__first"><em>Gibran</em></span>
+      <span class="cinema__last">Alcocer</span>
+    </h1>
+  </div>
+
+  <a class="scroll-cue" href="#prelude" aria-label="Continue">
+    <span class="scroll-cue__lab">Read on</span>
+    <span class="scroll-cue__rule"></span>
+  </a>
+</section>
+
+
+<!-- ─────────────────────  PRELUDE · ONE LINE OF BIO  ───────────────────── -->
+<section class="prelude" id="prelude">
+  <span class="lab">Pianist · Composer · Producer</span>
+  <p class="prelude__line">
+    Twenty-three years old. <em>Born and working in Mérida, Yucatán.</em> Author of the <em>Idea</em> series — solo piano, recorded at home, released only when finished. Streamed by tens of millions; performed for the first time abroad in the Grand Hall of the Elbphilharmonie, Hamburg, last June.
+  </p>
+</section>
+
+
+<!-- ─────────────────────  QUOTE  ───────────────────── -->
+<section class="quote" id="quote">
+  <blockquote class="quote__bq">
+    <p class="quote__text">
+      <em>My intention is to invite reflection</em> — to take a pause, to remember those quiet moments that sometimes feel so far away.
+    </p>
+    <cite class="quote__cite">G.A., on the writing of <em>Idea 12</em></cite>
+  </blockquote>
+</section>
+
+
+<!-- ─────────────────────  THE WORK · RELEASED IDEAS  ───────────────────── -->
+<section class="work" id="work">
+  <header class="work__head">
+    <span class="lab">The Released Ideas</span>
+    <span class="lab lab--right">2022 — present · ten compositions, solo piano</span>
+  </header>
+
+  <ol class="ideas">
+    <li class="idea is-current">
+      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
+        <span class="idea__no">19.</span>
+        <span class="idea__name"><em>Idea</em>&nbsp;Nineteen</span>
+        <span class="idea__meta">Mayo 2026 · the latest</span>
       </a>
-    </div>
-  </section>
+    </li>
+    <li class="idea">
+      <a href="https://open.spotify.com/track/6gV01TEb8vqS8Munhgncov" target="_blank" rel="noopener">
+        <span class="idea__no">02.</span>
+        <span class="idea__name"><em>Idea</em>&nbsp;Two</span>
+        <span class="idea__meta">August 2025</span>
+      </a>
+    </li>
+    <li class="idea">
+      <a href="https://open.spotify.com/track/6FiVybin2ArwUDwGKSOA2r" target="_blank" rel="noopener">
+        <span class="idea__no">12.</span>
+        <span class="idea__name"><em>Idea</em>&nbsp;Twelve</span>
+        <span class="idea__meta">April 2025</span>
+      </a>
+    </li>
+    <li class="idea">
+      <a href="https://open.spotify.com/track/7exOrewyAiFxxHkGMXIvUn" target="_blank" rel="noopener">
+        <span class="idea__no">25.</span>
+        <span class="idea__name"><em>Idea</em>&nbsp;Twenty-Five</span>
+        <span class="idea__meta">December 2024 · w. Andrea Vanzo</span>
+      </a>
+    </li>
+    <li class="idea">
+      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
+        <span class="idea__no">07.</span>
+        <span class="idea__name"><em>Idea</em>&nbsp;Seven</span>
+        <span class="idea__meta">2024</span>
+      </a>
+    </li>
+    <li class="idea">
+      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
+        <span class="idea__no">15.</span>
+        <span class="idea__name"><em>Idea</em>&nbsp;Fifteen</span>
+        <span class="idea__meta">2023</span>
+      </a>
+    </li>
+    <li class="idea">
+      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
+        <span class="idea__no">09.</span>
+        <span class="idea__name"><em>Idea</em>&nbsp;Nine</span>
+        <span class="idea__meta">2023</span>
+      </a>
+    </li>
+    <li class="idea">
+      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
+        <span class="idea__no">01.</span>
+        <span class="idea__name"><em>Idea</em>&nbsp;One</span>
+        <span class="idea__meta">2023 · adapted by Atmozfears, Defqon.1</span>
+      </a>
+    </li>
+    <li class="idea">
+      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
+        <span class="idea__no">22.</span>
+        <span class="idea__name"><em>Idea</em>&nbsp;Twenty-Two</span>
+        <span class="idea__meta">2022</span>
+      </a>
+    </li>
+    <li class="idea">
+      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
+        <span class="idea__no">10.</span>
+        <span class="idea__name"><em>Idea</em>&nbsp;Ten</span>
+        <span class="idea__meta">July 2022 · the debut</span>
+      </a>
+    </li>
+  </ol>
 
-  <!-- II. EL AIRE -->
-  <section class="scene scene--ii" id="scene-2" data-surtitle="El aire · the air between two notes">
-    <div class="scene__num"><em>II.</em></div>
+  <p class="work__foot">
+    <em>The numbers are not chronological.</em> Each Idea is named in the order it begins; only those finished are released. Twenty more are kept in private — <em>silences, for now</em>.
+  </p>
+</section>
 
-    <blockquote class="aire">
-      <p class="aire__text">
-        Quiero que escuches el silencio
-        <em>que vive entre dos notas.</em>
-      </p>
-      <p class="aire__attr">— G.A., on <em>Idea XII</em></p>
-      <p class="aire__caption"><em>I want you to hear the silence that lives between two notes.</em></p>
-    </blockquote>
-  </section>
 
-  <!-- III. LAS IDEAS -->
-  <section class="scene scene--iii" id="scene-3" data-surtitle="Las Ideas · en orden numerológico · MMXXII—MMXXVI">
-    <div class="scene__num"><em>III.</em></div>
-    <div class="ideas">
-      <header class="ideas__head">
-        <span class="ideas__rubric">Las Ideas, en orden numerológico</span>
-        <span class="ideas__legend">
-          <span class="lg lg--released"><span class="dot"></span> released</span>
-          <span class="lg lg--ghost"><span class="dot"></span> aún sin estrenar</span>
-        </span>
-      </header>
+<!-- ─────────────────────  COLOPHON  ───────────────────── -->
+<section class="end" id="end">
 
-      <ol class="ideas__grid">
-        <!-- 01..30 — released ones marked with class .is-released and a year -->
-        <li class="idea is-released" style="--idea-i:1"  data-year="MMXXIII"><span class="idea__n">01</span><span class="idea__y">MMXXIII</span></li>
-        <li class="idea is-released" style="--idea-i:2"  data-year="MMXXV"><span class="idea__n">02</span><span class="idea__y">MMXXV</span></li>
-        <li class="idea"             style="--idea-i:3"><span class="idea__n">03</span></li>
-        <li class="idea"             style="--idea-i:4"><span class="idea__n">04</span></li>
-        <li class="idea"             style="--idea-i:5"><span class="idea__n">05</span></li>
-        <li class="idea"             style="--idea-i:6"><span class="idea__n">06</span></li>
-        <li class="idea is-released" style="--idea-i:7"  data-year="MMXXIV"><span class="idea__n">07</span><span class="idea__y">MMXXIV</span></li>
-        <li class="idea"             style="--idea-i:8"><span class="idea__n">08</span></li>
-        <li class="idea is-released" style="--idea-i:9"  data-year="MMXXIII"><span class="idea__n">09</span><span class="idea__y">MMXXIII</span></li>
-        <li class="idea is-released is-debut" style="--idea-i:10" data-year="MMXXII"><span class="idea__n">10</span><span class="idea__y">MMXXII · debut</span></li>
-        <li class="idea"             style="--idea-i:11"><span class="idea__n">11</span></li>
-        <li class="idea is-released" style="--idea-i:12" data-year="MMXXV"><span class="idea__n">12</span><span class="idea__y">MMXXV</span></li>
-        <li class="idea"             style="--idea-i:13"><span class="idea__n">13</span></li>
-        <li class="idea"             style="--idea-i:14"><span class="idea__n">14</span></li>
-        <li class="idea is-released" style="--idea-i:15" data-year="MMXXIII"><span class="idea__n">15</span><span class="idea__y">MMXXIII</span></li>
-        <li class="idea"             style="--idea-i:16"><span class="idea__n">16</span></li>
-        <li class="idea"             style="--idea-i:17"><span class="idea__n">17</span></li>
-        <li class="idea"             style="--idea-i:18"><span class="idea__n">18</span></li>
-        <li class="idea is-released is-current" style="--idea-i:19" data-year="MMXXVI"><span class="idea__n">19</span><span class="idea__y">MMXXVI · current</span></li>
-        <li class="idea"             style="--idea-i:20"><span class="idea__n">20</span></li>
-        <li class="idea"             style="--idea-i:21"><span class="idea__n">21</span></li>
-        <li class="idea is-released" style="--idea-i:22" data-year="MMXXII"><span class="idea__n">22</span><span class="idea__y">MMXXII</span></li>
-        <li class="idea"             style="--idea-i:23"><span class="idea__n">23</span></li>
-        <li class="idea"             style="--idea-i:24"><span class="idea__n">24</span></li>
-        <li class="idea is-released" style="--idea-i:25" data-year="MMXXIV"><span class="idea__n">25</span><span class="idea__y">MMXXIV · w. Andrea Vanzo</span></li>
-        <li class="idea"             style="--idea-i:26"><span class="idea__n">26</span></li>
-        <li class="idea"             style="--idea-i:27"><span class="idea__n">27</span></li>
-        <li class="idea"             style="--idea-i:28"><span class="idea__n">28</span></li>
-        <li class="idea"             style="--idea-i:29"><span class="idea__n">29</span></li>
-        <li class="idea"             style="--idea-i:30"><span class="idea__n">30</span></li>
-      </ol>
+  <p class="end__line">
+    For correspondence, sheet music, or a private commission —
+  </p>
 
-      <p class="ideas__foot"><em>Each Idea is named numerically while it is composed, and only released when it is finished. The unreleased numbers are left as silences.</em></p>
-    </div>
-  </section>
+  <a class="end__mail" href="mailto:gibran@gibranalcocer.com">gibran@gibranalcocer.com</a>
 
-  <!-- IV. MÉRIDA → HAMBURG -->
-  <section class="scene scene--iv" id="scene-4" data-surtitle="Mérida, Yucatán → Hamburg, Elbphilharmonie">
-    <div class="scene__num"><em>IV.</em></div>
-    <div class="atlas">
-      <div class="atlas__row">
-        <div class="atlas__pole atlas__pole--from">
-          <span class="atlas__lab">Compuesto en</span>
-          <span class="atlas__city"><em>Mérida</em></span>
-          <span class="atlas__co">20°58′N · 89°37′W · Yucatán</span>
-        </div>
+  <ul class="end__marks">
+    <li><a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">Spotify</a></li>
+    <li><a href="https://www.instagram.com/gibranalbo/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://www.youtube.com/@GibranAlcocerOfficial" target="_blank" rel="noopener">YouTube</a></li>
+    <li><a href="https://gibranalcocer.com/" target="_blank" rel="noopener">Sheet music</a></li>
+  </ul>
 
-        <div class="atlas__line" aria-hidden="true">
-          <svg viewBox="0 0 600 32" preserveAspectRatio="none">
-            <path d="M 4 16 Q 300 -28 596 16" fill="none" stroke="currentColor" stroke-width="0.6"/>
-            <circle cx="4" cy="16" r="2" fill="currentColor"/>
-            <circle cx="596" cy="16" r="2" fill="currentColor"/>
-          </svg>
-        </div>
-
-        <div class="atlas__pole atlas__pole--to">
-          <span class="atlas__lab">First performed abroad</span>
-          <span class="atlas__city"><em>Hamburg</em></span>
-          <span class="atlas__co">53°32′N · 9°59′E · Elbphilharmonie</span>
-        </div>
-      </div>
-
-      <p class="atlas__line-of-life">
-        Composed in the heat of Yucatán; performed, first abroad, in the white hall at Hamburg, <em>Junio MMXXV</em>.
-      </p>
-    </div>
-  </section>
-
-  <!-- V. COLOFÓN -->
-  <section class="scene scene--v" id="scene-5" data-surtitle="Colofón · MMXXVI">
-    <div class="scene__num"><em>V.</em></div>
-    <div class="colofon">
-      <p class="colofon__intro">For correspondence, sheet music, or a private commission —</p>
-      <a class="colofon__mail" href="mailto:gibran@gibranalcocer.com">gibran@gibranalcocer.com</a>
-
-      <ul class="colofon__marks">
-        <li><a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">Spotify</a></li>
-        <li><a href="https://www.instagram.com/gibranalbo/" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="https://www.youtube.com/@GibranAlcocerOfficial" target="_blank" rel="noopener">YouTube</a></li>
-        <li><a href="https://gibranalcocer.com/" target="_blank" rel="noopener">Sheet music</a></li>
-      </ul>
-
-      <div class="colofon__seal" aria-hidden="true">
-        <svg viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="0.4"/>
-          <circle cx="100" cy="100" r="76" fill="none" stroke="currentColor" stroke-width="0.4"/>
-          <text x="100" y="92" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-weight="400" font-size="34">G·A</text>
-          <text x="100" y="118" text-anchor="middle" font-family="Cormorant Garamond" font-weight="300" font-size="9" letter-spacing="3">DO MENOR</text>
-        </svg>
-      </div>
-
-      <p class="colofon__imprint">
-        Compuesto en La Mérida, en <em>Do menor</em>. Tipografía: <em>Cormorant Garamond</em>. Sin asistente, sin teclado virtual. <em>© MMXXVI</em>.
-      </p>
-    </div>
-  </section>
-
-</main>
+  <p class="end__imprint">
+    Gibran Alcocer · Mérida, Yucatán · MMXXVI<br>
+    Set in <em>Instrument Serif</em>. Film recorded at home, twenty-three seconds, looped.
+  </p>
+</section>
 
 <script src="script.js"></script>
 </body>

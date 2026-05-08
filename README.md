@@ -1,12 +1,12 @@
-# Gibran Alcocer — *El Aire*
+# Gibran Alcocer — A film at the piano.
 
-A preview brand site for **Gibran Alcocer**, Mexican pianist and composer (Mérida, Yucatán). Rendered as the *air between two notes* — five held tableaux traversed by a single, physically-simulated string that responds to the cursor as a piano hammer.
+A preview brand site for **Gibran Alcocer**, Mexican pianist and composer (Mérida, Yucatán). Built around a 13-second loop of the composer at the piano, in five quiet movements: cinema, prelude, quote, the released *Idea* series, end.
 
 ## Stack
 - Static HTML / CSS / vanilla JS — no framework, no build step.
-- Single typeface — *Cormorant Garamond* (Google Fonts).
-- Wave-equation simulation for the string (180 segments · spring + damping + neighbour coupling).
-- Yucatán Nocturno palette: Noche `#0A0908`, Marfil `#E8DEC9`, Henequén `#C9A36B`, Jacaranda `#3E2A4A`.
+- Single typeface — *Instrument Serif* (Roman + Italic).
+- Two colours — `#0A0908` Noche, `#F2EBE0` Crema.
+- Hero film transcoded to web-optimized H.264 (1080p · 2.1 MB; 720p · 866 KB for mobile) with poster frame.
 
 ## Local
 ```sh
@@ -19,4 +19,4 @@ python3 -m http.server 8201
 wrangler pages deploy . --project-name=gibran-alcocer --branch=main
 ```
 
-> Compuesto en La Mérida, en *Do menor*. Tipografía: *Cormorant Garamond*. Sin asistente, sin teclado virtual. © MMXXVI.
+> Gibran Alcocer · Mérida, Yucatán · MMXXVI. Set in *Instrument Serif*. Film recorded at home, twenty-three seconds, looped.

@@ -1,0 +1,538 @@
+/* ─────────────────────────────────────────────────────────────
+   GIBRAN ALCOCER — EL AIRE
+   Yucatán Nocturno · Cormorant Garamond · La Cuerda
+   ───────────────────────────────────────────────────────────── */
+
+:root{
+  --noche:      #0A0908;       /* warm near-black, never pure black */
+  --noche-2:    #131110;
+  --marfil:     #E8DEC9;       /* warm ivory of piano keys */
+  --marfil-d:   #BFB59E;       /* dimmed marfil for surtitles */
+  --henequen:   #C9A36B;       /* Yucatán fibre gold — sole accent */
+  --jacaranda:  #6E4F84;       /* used once, for the seal */
+
+  --hair:       rgba(232, 222, 201, 0.18);
+  --hair-2:     rgba(232, 222, 201, 0.34);
+
+  --gut:        clamp(28px, 6vw, 88px);
+  --t-base:     clamp(15px, 0.8vw + 12px, 18px);
+
+  --ease:       cubic-bezier(.2, .7, .15, 1);
+  --ease-soft:  cubic-bezier(.4, .0, .15, 1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html,body{
+  margin:0; padding:0;
+  background:var(--noche);
+  color:var(--marfil);
+  font-family:'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-weight:300;
+  font-size:var(--t-base);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"liga","kern","onum";
+}
+
+body{
+  cursor:none;
+  overflow-x:hidden;
+  /* a faint, static, organic warmth — never animated */
+  background:
+    radial-gradient(80vw 70vh at 70% 0%, rgba(201,163,107,0.04), transparent 60%),
+    radial-gradient(70vw 60vh at 20% 100%, rgba(110,79,132,0.05), transparent 60%),
+    var(--noche);
+}
+@media (hover:none){ body{ cursor:auto; } }
+
+::selection{ background:var(--henequen); color:var(--noche); }
+a{ color:inherit; text-decoration:none; }
+
+em{ font-style:italic; }
+
+/* ─────────────  THE STRING (la cuerda)  ───────────── */
+.cuerda{
+  position:fixed;
+  top:0; left:0;
+  width:100vw; height:100vh;
+  pointer-events:none;
+  z-index:5;
+}
+.cuerda path{
+  fill:none;
+  stroke:var(--marfil);
+  stroke-width:0.6;
+  opacity:0.55;
+  vector-effect:non-scaling-stroke;
+}
+
+/* ─────────────  CURSOR HAMMER (martillo)  ───────────── */
+.martillo{
+  position:fixed; top:0; left:0;
+  width:34px; height:1.6px;
+  background:var(--marfil);
+  border-radius:1px;
+  transform:translate(-17px, -0.8px);
+  pointer-events:none;
+  z-index:9999;
+  opacity:0;
+  transition:opacity .5s var(--ease);
+  will-change:transform;
+  box-shadow:0 0 12px rgba(232,222,201,0.18);
+}
+.is-ready .martillo{ opacity:.92; }
+@media (hover:none){ .martillo{ display:none; } }
+
+/* ─────────────  MARK (top-left, single mark — no four-corner frame)  ───────────── */
+.mark{
+  position:fixed;
+  top:24px; left:28px;
+  z-index:50;
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:14px;
+  letter-spacing:0.34em;
+  color:var(--marfil-d);
+  opacity:0; transition:opacity 1.6s var(--ease) .4s;
+  pointer-events:none;
+}
+.is-ready .mark{ opacity:.62; }
+.mark__name em{ font-style:normal; }
+
+/* ─────────────  SURTITLE (single bottom-center metadata, opera-house chyron)  ───────────── */
+.surtitle{
+  position:fixed;
+  bottom:22px; left:0; right:0;
+  text-align:center;
+  z-index:50;
+  font-family:'Cormorant Garamond', serif;
+  font-weight:300;
+  font-size:12.5px;
+  letter-spacing:0.42em;
+  text-transform:uppercase;
+  color:var(--marfil-d);
+  opacity:0; transition:opacity 1.6s var(--ease) .8s;
+  pointer-events:none;
+}
+.is-ready .surtitle{ opacity:.55; }
+.surtitle__inner{ display:inline-block; transition:opacity .9s var(--ease); }
+.surtitle__inner em{ font-style:normal; opacity:.55; padding:0 .4em; }
+.surtitle.is-swap .surtitle__inner{ opacity:0; }
+
+/* ─────────────  SCENES (Held Tableaux)  ───────────── */
+#page{ position:relative; z-index:2; }
+
+.scene{
+  min-height:100vh;
+  padding:18vh var(--gut) 22vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  position:relative;
+  max-width:1280px;
+  margin:0 auto;
+}
+
+.scene__num{
+  position:absolute;
+  top:8vh; right:var(--gut);
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:14px;
+  letter-spacing:0.32em;
+  color:var(--marfil-d);
+  opacity:.5;
+}
+.scene__num em{ font-style:italic; }
+
+/* ─────────────  I — IDEA XIX (masthead)  ───────────── */
+.scene--i{ padding-top:22vh; }
+.masthead{ max-width:1100px; }
+.masthead__rubric{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(13px, 1vw, 16px);
+  letter-spacing:0.34em;
+  text-transform:uppercase;
+  color:var(--marfil-d);
+  margin:0 0 32px;
+  opacity:.65;
+}
+.masthead__title{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:300;
+  font-size:clamp(96px, 22vw, 360px);
+  line-height:0.86;
+  letter-spacing:-0.03em;
+  margin:0 0 56px;
+  color:var(--marfil);
+}
+.masthead__title .t1{
+  display:block;
+  font-style:italic;
+  font-weight:300;
+  font-size:0.34em;
+  letter-spacing:0.08em;
+  margin-bottom:0.05em;
+  opacity:.85;
+}
+.masthead__title .t2{ display:block; padding-left:0.06em; }
+.masthead__title .dot{ color:var(--henequen); font-style:normal; }
+
+.masthead__caption{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(15px, 1.3vw, 19px);
+  line-height:1.6;
+  color:var(--marfil-d);
+  max-width:48ch;
+  margin:0 0 64px;
+  opacity:.85;
+}
+.masthead__caption em{ font-style:normal; color:var(--marfil); }
+
+.escucha{
+  display:inline-flex;
+  align-items:baseline;
+  gap:14px;
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(28px, 3.4vw, 44px);
+  letter-spacing:-0.005em;
+  color:var(--marfil);
+  position:relative;
+  padding-bottom:0.18em;
+}
+.escucha .dot{ color:var(--henequen); font-style:normal; }
+.escucha__rule{
+  display:inline-block;
+  width:96px; height:1px;
+  background:var(--marfil);
+  transform-origin:left center;
+  transition:width .9s var(--ease), background .6s var(--ease);
+}
+.escucha:hover{ color:var(--henequen); }
+.escucha:hover .escucha__rule{ width:200px; background:var(--henequen); }
+
+/* ─────────────  II — EL AIRE  ───────────── */
+.scene--ii{ padding-top:30vh; }
+.aire{
+  margin:0;
+  max-width:78ch;
+}
+.aire__text{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:300;
+  font-style:italic;
+  font-size:clamp(34px, 5.4vw, 88px);
+  line-height:1.06;
+  letter-spacing:-0.012em;
+  color:var(--marfil);
+  margin:0 0 56px;
+}
+.aire__text em{
+  display:block;
+  color:var(--marfil-d);
+  font-style:italic;
+  margin-top:0.16em;
+}
+.aire__attr{
+  font-style:italic;
+  font-size:clamp(15px, 1.2vw, 18px);
+  letter-spacing:0.04em;
+  color:var(--marfil-d);
+  margin:0 0 18px;
+  opacity:.75;
+}
+.aire__attr em{ font-style:italic; color:var(--henequen); }
+.aire__caption{
+  font-style:italic;
+  font-size:13px;
+  letter-spacing:0.04em;
+  color:var(--marfil-d);
+  margin:0;
+  opacity:.55;
+  max-width:54ch;
+}
+
+/* ─────────────  III — LAS IDEAS  ───────────── */
+.scene--iii{ padding-top:22vh; }
+.ideas{ width:100%; max-width:1080px; }
+.ideas__head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:24px;
+  padding-bottom:18px;
+  margin-bottom:48px;
+  border-bottom:1px solid var(--hair);
+  flex-wrap:wrap;
+}
+.ideas__rubric{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(15px, 1.3vw, 19px);
+  letter-spacing:0.04em;
+  color:var(--marfil-d);
+}
+.ideas__legend{
+  display:flex; gap:28px;
+  font-family:'Cormorant Garamond', serif;
+  font-weight:300;
+  font-size:11px;
+  letter-spacing:0.32em;
+  text-transform:uppercase;
+  color:var(--marfil-d);
+}
+.ideas__legend .lg{ display:inline-flex; align-items:center; gap:8px; }
+.ideas__legend .dot{ display:inline-block; width:6px; height:6px; border-radius:50%; }
+.lg--released .dot{ background:var(--marfil); }
+.lg--ghost .dot{ background:transparent; border:1px solid var(--marfil-d); }
+
+.ideas__grid{
+  list-style:none; padding:0; margin:0;
+  display:grid;
+  grid-template-columns:repeat(6, 1fr);
+  gap:0;
+  border-top:1px solid var(--hair);
+  border-left:1px solid var(--hair);
+}
+@media (max-width:980px){ .ideas__grid{ grid-template-columns:repeat(5,1fr); } }
+@media (max-width:700px){ .ideas__grid{ grid-template-columns:repeat(3,1fr); } }
+@media (max-width:420px){ .ideas__grid{ grid-template-columns:repeat(2,1fr); } }
+
+.idea{
+  position:relative;
+  border-right:1px solid var(--hair);
+  border-bottom:1px solid var(--hair);
+  aspect-ratio:1 / 1.05;
+  padding:18px 16px 14px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:background .6s var(--ease);
+  cursor:pointer;
+}
+.idea__n{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:300;
+  font-style:italic;
+  font-size:clamp(46px, 6.4vw, 84px);
+  line-height:0.92;
+  letter-spacing:-0.02em;
+  color:var(--marfil-d);
+  -webkit-text-stroke:0.6px var(--marfil-d);
+  -webkit-text-fill-color:transparent;
+  transition:color .7s var(--ease), -webkit-text-fill-color .7s var(--ease), opacity .7s var(--ease);
+  opacity:.45;
+}
+.idea__y{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:300;
+  font-style:italic;
+  font-size:11px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--marfil-d);
+  opacity:0;
+  transform:translateY(2px);
+  transition:opacity .6s var(--ease), transform .6s var(--ease);
+}
+
+/* released — solid filled numerals */
+.idea.is-released .idea__n{
+  color:var(--marfil);
+  -webkit-text-fill-color:var(--marfil);
+  -webkit-text-stroke:0;
+  opacity:1;
+}
+.idea.is-released .idea__y{ opacity:.6; }
+
+/* current */
+.idea.is-current{ background:rgba(201,163,107,0.04); }
+.idea.is-current .idea__n{ color:var(--henequen); -webkit-text-fill-color:var(--henequen); }
+.idea.is-current .idea__y{ color:var(--henequen); opacity:.85; }
+
+/* debut */
+.idea.is-debut .idea__n{ font-style:italic; }
+
+/* hover */
+.idea:hover{ background:rgba(232,222,201,0.04); }
+.idea:hover .idea__n{ color:var(--henequen); -webkit-text-fill-color:var(--henequen); -webkit-text-stroke:0; opacity:1; }
+.idea:hover .idea__y{ opacity:.85; transform:translateY(0); }
+
+.ideas__foot{
+  margin-top:36px;
+  font-style:italic;
+  font-size:clamp(13px, 1vw, 15px);
+  color:var(--marfil-d);
+  opacity:.65;
+  max-width:60ch;
+  line-height:1.65;
+}
+
+/* ─────────────  IV — MÉRIDA → HAMBURG  ───────────── */
+.scene--iv{ padding-top:22vh; align-items:center; }
+.atlas{ width:100%; max-width:1180px; margin:0 auto; }
+.atlas__row{
+  display:grid;
+  grid-template-columns:1fr 1.2fr 1fr;
+  gap:32px;
+  align-items:center;
+  margin-bottom:64px;
+}
+@media (max-width:780px){
+  .atlas__row{ grid-template-columns:1fr; gap:36px; text-align:center; }
+}
+
+.atlas__pole{
+  display:flex; flex-direction:column; gap:14px;
+}
+.atlas__pole--to{ text-align:right; }
+@media (max-width:780px){ .atlas__pole--to{ text-align:center; } }
+
+.atlas__lab{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:11.5px;
+  letter-spacing:0.32em;
+  text-transform:uppercase;
+  color:var(--marfil-d);
+  opacity:.65;
+}
+.atlas__city{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:300;
+  font-size:clamp(54px, 8vw, 130px);
+  line-height:0.94;
+  letter-spacing:-0.02em;
+  color:var(--marfil);
+}
+.atlas__city em{ font-style:italic; }
+.atlas__co{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-size:13px;
+  letter-spacing:0.06em;
+  color:var(--marfil-d);
+  opacity:.7;
+}
+
+.atlas__line{ color:var(--marfil-d); opacity:.7; padding:0 6px; }
+.atlas__line svg{ width:100%; height:32px; display:block; }
+@media (max-width:780px){ .atlas__line{ display:none; } }
+
+.atlas__line-of-life{
+  text-align:center;
+  font-style:italic;
+  font-size:clamp(15px, 1.3vw, 19px);
+  color:var(--marfil-d);
+  max-width:64ch;
+  margin:0 auto;
+  opacity:.85;
+}
+.atlas__line-of-life em{ font-style:italic; color:var(--henequen); }
+
+/* ─────────────  V — COLOFÓN  ───────────── */
+.scene--v{ padding-top:18vh; align-items:center; text-align:center; padding-bottom:18vh; }
+.colofon{ width:100%; max-width:780px; margin:0 auto; }
+.colofon__intro{
+  font-style:italic;
+  font-size:clamp(15px, 1.3vw, 19px);
+  letter-spacing:0.02em;
+  color:var(--marfil-d);
+  margin:0 0 28px;
+  opacity:.85;
+}
+.colofon__mail{
+  display:inline-block;
+  font-family:'Cormorant Garamond', serif;
+  font-weight:300;
+  font-style:italic;
+  font-size:clamp(28px, 4.6vw, 56px);
+  letter-spacing:-0.005em;
+  color:var(--marfil);
+  position:relative;
+  padding-bottom:0.1em;
+  margin:0 0 56px;
+}
+.colofon__mail::after{
+  content:""; position:absolute; left:0; right:0; bottom:0.04em;
+  height:1px; background:var(--marfil);
+  transform-origin:left; transform:scaleX(1);
+  transition:transform .9s var(--ease), background .6s var(--ease);
+}
+.colofon__mail:hover{ color:var(--henequen); }
+.colofon__mail:hover::after{ background:var(--henequen); transform:scaleX(1.06); }
+
+.colofon__marks{
+  list-style:none; padding:0; margin:0 0 80px;
+  display:flex; justify-content:center; gap:42px;
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:14px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+}
+.colofon__marks a{ color:var(--marfil-d); transition:color .4s var(--ease); border-bottom:1px solid transparent; padding-bottom:2px; }
+.colofon__marks a:hover{ color:var(--henequen); border-bottom-color:var(--henequen); }
+@media (max-width:560px){
+  .colofon__marks{ gap:22px; flex-wrap:wrap; font-size:12px; }
+}
+
+.colofon__seal{
+  width:140px; margin:0 auto 56px;
+  color:var(--jacaranda);
+  opacity:0.85;
+}
+.colofon__seal svg{ width:100%; height:auto; }
+.colofon__seal text{ fill:var(--jacaranda); }
+
+.colofon__imprint{
+  font-style:italic;
+  font-size:13px;
+  color:var(--marfil-d);
+  opacity:.55;
+  max-width:62ch;
+  margin:0 auto;
+  line-height:1.7;
+}
+.colofon__imprint em{ font-style:italic; color:var(--marfil); opacity:.85; }
+
+/* ─────────────  RESONANCE REVEAL (typography fades from blur to focus)  ───────────── */
+.fade-in{
+  opacity:0;
+  filter:blur(2px);
+  transform:translateY(6px);
+  transition:opacity 1.4s var(--ease-soft), filter 1.4s var(--ease-soft), transform 1.4s var(--ease-soft);
+}
+.fade-in.is-revealed{
+  opacity:1;
+  filter:blur(0);
+  transform:translateY(0);
+}
+
+/* ─────────────  REDUCED MOTION  ───────────── */
+@media (prefers-reduced-motion:reduce){
+  *{ animation-duration:.001s !important; transition-duration:.001s !important; }
+  .fade-in{ opacity:1 !important; filter:none !important; transform:none !important; }
+}
+
+/* ─────────────  MOBILE  ───────────── */
+@media (max-width:720px){
+  .mark{ top:18px; left:18px; font-size:12px; }
+  .surtitle{ bottom:14px; font-size:10.5px; letter-spacing:0.32em; padding:0 18px; }
+  .scene{ padding:14vh var(--gut) 16vh; }
+  .scene__num{ top:5vh; right:var(--gut); font-size:12px; }
+  .ideas__head{ flex-direction:column; align-items:flex-start; gap:12px; }
+}

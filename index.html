@@ -4,10 +4,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gibran Alcocer — Pianist · Composer · Mérida</title>
-<meta name="description" content="Gibran Alcocer. Pianist, composer, producer. Mérida, Yucatán. The Idea series. Idea 19, May 2026.">
-<meta property="og:title" content="Gibran Alcocer">
-<meta property="og:description" content="Pianist · Composer · Mérida. The Idea series.">
+<title>Gibran Alcocer — Idea XIX, a listening room.</title>
+<meta name="description" content="Gibran Alcocer · Idea XIX. A listening room: three minutes, twenty-seven seconds, for one listener.">
+<meta property="og:title" content="Idea XIX — Gibran Alcocer">
+<meta property="og:description" content="A listening room. Three minutes, twenty-seven seconds, for one listener.">
 <meta property="og:image" content="media/gibran-poster.jpg">
 <meta name="theme-color" content="#0A0908">
 
@@ -15,184 +15,174 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
-<link rel="preload" as="image" href="media/gibran-poster.jpg">
+<link rel="preload" as="image"  href="media/gibran-poster.jpg">
+<link rel="preload" as="audio"  href="media/idea-19.mp3" type="audio/mpeg">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="state-foyer">
 
-<!-- ─────────────────────  HERO · CINEMA  ───────────────────── -->
-<section class="cinema" id="cinema">
+<!-- ─────────────────────  THE FILM  (always present, always playing muted) ───────────────────── -->
+<div class="stage" aria-hidden="true">
+  <video class="film" id="film"
+         playsinline autoplay muted loop preload="auto"
+         poster="media/gibran-poster.jpg">
+    <source id="filmSrc" src="media/gibran.mp4" type="video/mp4">
+  </video>
+  <div class="stage__veil"></div>
+  <div class="stage__bars"><span></span><span></span></div>
+</div>
 
-  <div class="cinema__frame">
-    <video class="cinema__video" id="film"
-           playsinline autoplay muted loop preload="auto"
-           poster="media/gibran-poster.jpg">
-      <source id="filmSrc" src="media/gibran.mp4" type="video/mp4">
-    </video>
-    <div class="cinema__veil" aria-hidden="true"></div>
-  </div>
+<!-- ─────────────────────  THE TRACK (audio · loaded but not autoplaying) ───────────────────── -->
+<audio id="track" preload="auto" crossorigin="anonymous">
+  <source src="media/idea-19.mp3" type="audio/mpeg">
+</audio>
 
-  <!-- film credits — minimal, in the four edges of the frame -->
-  <div class="credits">
-    <div class="credits__tl">
-      <span class="lab">A film at the piano</span>
-    </div>
+<!-- ─────────────────────  THE WAVEFORM (live FFT, fixed at bottom edge) ───────────────────── -->
+<canvas class="wave" id="wave" aria-hidden="true"></canvas>
 
-    <div class="credits__tr">
-      <button class="sound" id="sound" type="button" aria-pressed="false">
-        <span class="sound__lab">Sound</span>
-        <span class="sound__dot" aria-hidden="true"></span>
-      </button>
-    </div>
 
-    <div class="credits__bl">
-      <span class="lab"><span class="bullet">●</span>&nbsp;&nbsp;Now playing — <em>Idea 19</em>, the latest released</span>
-    </div>
+<!-- ─────────────────────  FOYER  ───────────────────── -->
+<section class="foyer" id="foyer">
 
-    <div class="credits__br">
-      <span class="time" id="time">00:00 / 00:13</span>
-    </div>
+  <p class="foyer__rubric"><span class="lab">A listening room — for one</span></p>
 
-    <h1 class="cinema__name" aria-label="Gibran Alcocer">
-      <span class="cinema__first"><em>Gibran</em></span>
-      <span class="cinema__last">Alcocer</span>
-    </h1>
-  </div>
+  <h1 class="foyer__title">
+    <span class="foyer__t1">Idea</span>
+    <span class="foyer__t2"><em>XIX.</em></span>
+  </h1>
 
-  <a class="scroll-cue" href="#prelude" aria-label="Continue">
-    <span class="scroll-cue__lab">Read on</span>
-    <span class="scroll-cue__rule"></span>
+  <button class="enter" id="enter" type="button">
+    <span class="enter__ring" aria-hidden="true">
+      <svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="46.6" fill="none" stroke="currentColor" stroke-width="0.4"/></svg>
+      <span class="enter__triangle" aria-hidden="true"></span>
+    </span>
+    <span class="enter__lab">Press to listen</span>
+  </button>
+
+  <p class="foyer__meta">
+    <em>Mayo MMXXVI</em> &nbsp;·&nbsp; three minutes, twenty-seven seconds &nbsp;·&nbsp; performed, written and produced by <em>Gibran Alcocer</em>
+  </p>
+
+  <a class="foyer__skip" href="#room" id="skip">
+    <span class="lab">Or skip the performance</span>
   </a>
 </section>
 
 
-<!-- ─────────────────────  PRELUDE · ONE LINE OF BIO  ───────────────────── -->
-<section class="prelude" id="prelude">
-  <span class="lab">Pianist · Composer · Producer</span>
-  <p class="prelude__line">
-    <em>Born and working in Mérida, Yucatán.</em> Author of the <em>Idea</em> series — solo piano, recorded at home, released only when finished. Streamed by tens of millions; performed, for the first time abroad, in the Grand Hall of the Elbphilharmonie, Hamburg, last June.
-  </p>
-</section>
+<!-- ─────────────────────  AUDITORIUM (the cued intertitles)  ───────────────────── -->
+<section class="auditorium" id="auditorium" aria-hidden="true">
 
+  <!-- corner masthead — fades in once listening begins -->
+  <div class="masthead" data-cue="masthead">
+    <span class="lab">Now listening</span>
+    <span class="masthead__name"><em>Gibran</em>&nbsp;Alcocer</span>
+    <span class="masthead__sub">Idea XIX · solo piano · Mérida, MMXXVI</span>
+  </div>
 
-<!-- ─────────────────────  QUOTE  ───────────────────── -->
-<section class="quote" id="quote">
-  <blockquote class="quote__bq">
-    <p class="quote__text">
-      <em>My intention is to invite reflection</em> — to take a pause, to remember those quiet moments that sometimes feel so far away.
+  <!-- live time counter (top-right) -->
+  <div class="counter" data-cue="masthead">
+    <span class="time" id="time">00:00 / 03:27</span>
+  </div>
+
+  <!-- intertitles — only one is visible at a time during the performance -->
+  <div class="intertitle" data-cue="dedication">
+    <p class="intertitle__line"><em>For one listener.</em></p>
+  </div>
+
+  <div class="intertitle intertitle--bio" data-cue="bio">
+    <p class="intertitle__line">
+      <em>Born and working in Mérida, Yucatán.</em>
+      Author of the <em>Idea</em> series — solo piano, recorded at home, released only when finished.
     </p>
-    <cite class="quote__cite">G.A., on the writing of <em>Idea 12</em></cite>
-  </blockquote>
+  </div>
+
+  <div class="intertitle intertitle--ideas" data-cue="ideas">
+    <span class="lab">The Released Ideas, MMXXII — present</span>
+    <ol class="ideaslist">
+      <li data-at="0">19 &nbsp;<em>Mayo MMXXVI</em></li>
+      <li data-at="1">02 &nbsp;<em>Agosto MMXXV</em></li>
+      <li data-at="2">12 &nbsp;<em>Abril MMXXV</em></li>
+      <li data-at="3">25 &nbsp;<em>Diciembre MMXXIV — w. Andrea Vanzo</em></li>
+      <li data-at="4">07 &nbsp;<em>MMXXIV</em></li>
+      <li data-at="5">15 &nbsp;<em>MMXXIII</em></li>
+      <li data-at="6">09 &nbsp;<em>MMXXIII</em></li>
+      <li data-at="7">01 &nbsp;<em>MMXXIII — adapted for Defqon.1</em></li>
+      <li data-at="8">22 &nbsp;<em>MMXXII</em></li>
+      <li data-at="9">10 &nbsp;<em>Julio MMXXII — the debut</em></li>
+    </ol>
+  </div>
+
+  <div class="intertitle intertitle--quote" data-cue="quote">
+    <blockquote>
+      <p class="intertitle__line"><em>My intention is to invite reflection</em> — to take a pause, to remember those quiet moments that sometimes feel so far away.</p>
+      <cite>— G.A., on the writing of <em>Idea XII</em></cite>
+    </blockquote>
+  </div>
+
+  <div class="intertitle intertitle--silence" data-cue="silence">
+    <p class="intertitle__line intertitle__silence">
+      <em>—&nbsp;the silence&nbsp;—</em>
+    </p>
+  </div>
+
 </section>
 
 
-<!-- ─────────────────────  THE WORK · RELEASED IDEAS  ───────────────────── -->
-<section class="work" id="work">
-  <header class="work__head">
-    <span class="lab">The Released Ideas</span>
-    <span class="lab lab--right">2022 — present · ten compositions, solo piano</span>
+<!-- ─────────────────────  THE ROOM (post-performance · scrollable site) ───────────────────── -->
+<main class="room" id="room" aria-hidden="true">
+
+  <header class="room__head">
+    <span class="lab">The performance has ended.</span>
+    <h2 class="room__title"><em>Gibran</em><br>Alcocer</h2>
+    <p class="room__sub">Pianist · Composer · Producer &nbsp;·&nbsp; Mérida, Yucatán</p>
+    <button class="replay" id="replay" type="button">
+      <span class="lab">Listen again</span>
+    </button>
   </header>
 
-  <ol class="ideas">
-    <li class="idea is-current">
-      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
-        <span class="idea__no">19.</span>
-        <span class="idea__name"><em>Idea</em>&nbsp;Nineteen</span>
-        <span class="idea__meta">Mayo 2026 · the latest</span>
-      </a>
-    </li>
-    <li class="idea">
-      <a href="https://open.spotify.com/track/6gV01TEb8vqS8Munhgncov" target="_blank" rel="noopener">
-        <span class="idea__no">02.</span>
-        <span class="idea__name"><em>Idea</em>&nbsp;Two</span>
-        <span class="idea__meta">August 2025</span>
-      </a>
-    </li>
-    <li class="idea">
-      <a href="https://open.spotify.com/track/6FiVybin2ArwUDwGKSOA2r" target="_blank" rel="noopener">
-        <span class="idea__no">12.</span>
-        <span class="idea__name"><em>Idea</em>&nbsp;Twelve</span>
-        <span class="idea__meta">April 2025</span>
-      </a>
-    </li>
-    <li class="idea">
-      <a href="https://open.spotify.com/track/7exOrewyAiFxxHkGMXIvUn" target="_blank" rel="noopener">
-        <span class="idea__no">25.</span>
-        <span class="idea__name"><em>Idea</em>&nbsp;Twenty-Five</span>
-        <span class="idea__meta">December 2024 · w. Andrea Vanzo</span>
-      </a>
-    </li>
-    <li class="idea">
-      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
-        <span class="idea__no">07.</span>
-        <span class="idea__name"><em>Idea</em>&nbsp;Seven</span>
-        <span class="idea__meta">2024</span>
-      </a>
-    </li>
-    <li class="idea">
-      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
-        <span class="idea__no">15.</span>
-        <span class="idea__name"><em>Idea</em>&nbsp;Fifteen</span>
-        <span class="idea__meta">2023</span>
-      </a>
-    </li>
-    <li class="idea">
-      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
-        <span class="idea__no">09.</span>
-        <span class="idea__name"><em>Idea</em>&nbsp;Nine</span>
-        <span class="idea__meta">2023</span>
-      </a>
-    </li>
-    <li class="idea">
-      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
-        <span class="idea__no">01.</span>
-        <span class="idea__name"><em>Idea</em>&nbsp;One</span>
-        <span class="idea__meta">2023 · adapted by Atmozfears, Defqon.1</span>
-      </a>
-    </li>
-    <li class="idea">
-      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
-        <span class="idea__no">22.</span>
-        <span class="idea__name"><em>Idea</em>&nbsp;Twenty-Two</span>
-        <span class="idea__meta">2022</span>
-      </a>
-    </li>
-    <li class="idea">
-      <a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">
-        <span class="idea__no">10.</span>
-        <span class="idea__name"><em>Idea</em>&nbsp;Ten</span>
-        <span class="idea__meta">July 2022 · the debut</span>
-      </a>
-    </li>
-  </ol>
+  <section class="room__quote">
+    <blockquote>
+      <p><em>My intention is to invite reflection</em> — to take a pause, to remember those quiet moments that sometimes feel so far away.</p>
+      <cite>— G.A., on the writing of <em>Idea XII</em></cite>
+    </blockquote>
+  </section>
 
-  <p class="work__foot">
-    <em>The numbers are not chronological.</em> Each Idea is named in the order it begins; only those finished are released. Twenty more are kept in private — <em>silences, for now</em>.
-  </p>
-</section>
+  <section class="room__work">
+    <header>
+      <span class="lab">The Released Ideas</span>
+      <span class="lab lab--right">2022 — present · ten compositions, solo piano</span>
+    </header>
+    <ol class="works">
+      <li><a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener"><span class="w-no">19.</span><span class="w-name"><em>Idea</em>&nbsp;Nineteen</span><span class="w-meta">Mayo 2026 · the latest</span></a></li>
+      <li><a href="https://open.spotify.com/track/6gV01TEb8vqS8Munhgncov" target="_blank" rel="noopener"><span class="w-no">02.</span><span class="w-name"><em>Idea</em>&nbsp;Two</span><span class="w-meta">August 2025</span></a></li>
+      <li><a href="https://open.spotify.com/track/6FiVybin2ArwUDwGKSOA2r" target="_blank" rel="noopener"><span class="w-no">12.</span><span class="w-name"><em>Idea</em>&nbsp;Twelve</span><span class="w-meta">April 2025</span></a></li>
+      <li><a href="https://open.spotify.com/track/7exOrewyAiFxxHkGMXIvUn" target="_blank" rel="noopener"><span class="w-no">25.</span><span class="w-name"><em>Idea</em>&nbsp;Twenty-Five</span><span class="w-meta">December 2024 · w. Andrea Vanzo</span></a></li>
+      <li><a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener"><span class="w-no">07.</span><span class="w-name"><em>Idea</em>&nbsp;Seven</span><span class="w-meta">2024</span></a></li>
+      <li><a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener"><span class="w-no">15.</span><span class="w-name"><em>Idea</em>&nbsp;Fifteen</span><span class="w-meta">2023</span></a></li>
+      <li><a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener"><span class="w-no">09.</span><span class="w-name"><em>Idea</em>&nbsp;Nine</span><span class="w-meta">2023</span></a></li>
+      <li><a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener"><span class="w-no">01.</span><span class="w-name"><em>Idea</em>&nbsp;One</span><span class="w-meta">2023 · adapted by Atmozfears, Defqon.1</span></a></li>
+      <li><a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener"><span class="w-no">22.</span><span class="w-name"><em>Idea</em>&nbsp;Twenty-Two</span><span class="w-meta">2022</span></a></li>
+      <li><a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener"><span class="w-no">10.</span><span class="w-name"><em>Idea</em>&nbsp;Ten</span><span class="w-meta">July 2022 · the debut</span></a></li>
+    </ol>
+    <p class="works__foot"><em>The numbers are not chronological.</em> Each Idea is named in the order it begins; only those finished are released. Twenty more are kept in private — <em>silences, for now</em>.</p>
+  </section>
 
+  <section class="room__end">
+    <p class="end__line">For correspondence, sheet music, or a private commission —</p>
+    <a class="end__mail" href="mailto:gibran@gibranalcocer.com">gibran@gibranalcocer.com</a>
+    <ul class="end__marks">
+      <li><a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">Spotify</a></li>
+      <li><a href="https://www.instagram.com/gibranalbo/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.youtube.com/@GibranAlcocerOfficial" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://gibranalcocer.com/" target="_blank" rel="noopener">Sheet music</a></li>
+    </ul>
+    <p class="end__imprint">
+      Gibran Alcocer · Mérida, Yucatán · MMXXVI<br>
+      Set in <em>Instrument Serif</em>. The room was a single uninterrupted listen of <em>Idea XIX</em>.
+    </p>
+  </section>
 
-<!-- ─────────────────────  COLOPHON  ───────────────────── -->
-<section class="end" id="end">
-
-  <p class="end__line">
-    For correspondence, sheet music, or a private commission —
-  </p>
-
-  <a class="end__mail" href="mailto:gibran@gibranalcocer.com">gibran@gibranalcocer.com</a>
-
-  <ul class="end__marks">
-    <li><a href="https://open.spotify.com/artist/5nWYvcpaqKtp08cYxjOfFr" target="_blank" rel="noopener">Spotify</a></li>
-    <li><a href="https://www.instagram.com/gibranalbo/" target="_blank" rel="noopener">Instagram</a></li>
-    <li><a href="https://www.youtube.com/@GibranAlcocerOfficial" target="_blank" rel="noopener">YouTube</a></li>
-    <li><a href="https://gibranalcocer.com/" target="_blank" rel="noopener">Sheet music</a></li>
-  </ul>
-
-  <p class="end__imprint">
-    Gibran Alcocer · Mérida, Yucatán · MMXXVI<br>
-    Set in <em>Instrument Serif</em>. Film recorded at home, twenty-three seconds, looped.
-  </p>
-</section>
+</main>
 
 <script src="script.js"></script>
 </body>
